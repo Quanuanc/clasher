@@ -1,5 +1,10 @@
+server:
+  port: 8085
+
 clasher:
   update-interval: 60 # 分钟
+  socks-address: "localhost"
+  socks-port: 7890
 
 upstream:
   proxy-providers:

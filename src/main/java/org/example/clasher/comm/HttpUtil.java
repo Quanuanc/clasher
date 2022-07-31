@@ -1,12 +1,16 @@
 package org.example.clasher.comm;
 
+import org.example.clasher.conf.Clasher;
 import org.example.clasher.conf.MmdbProvider;
 import org.example.clasher.conf.Provider;
 import org.example.clasher.conf.RuleProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.ProxySelector;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
@@ -22,28 +26,34 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@Component
 public class HttpUtil {
 
     private static final Logger log = LoggerFactory.getLogger(Logger.class);
-    private static final ExecutorService es = Executors.newFixedThreadPool(9);
-    private static final HttpClient client = HttpClient.newBuilder()
-            .executor(es)
-            .followRedirects(HttpClient.Redirect.NORMAL)
-            .build();
+    private final HttpClient client;
 
-    public static void updateRules(List<RuleProvider> ruleProviders) throws URISyntaxException {
+    public HttpUtil(Clasher clasher) {
+        ExecutorService es = Executors.newFixedThreadPool(9);
+        client = HttpClient.newBuilder()
+                .executor(es)
+                .proxy(ProxySelector.of(new InetSocketAddress(clasher.getSocksAddress(), clasher.getSocksPort())))
+                .followRedirects(HttpClient.Redirect.NORMAL)
+                .build();
+    }
+
+    public void updateRules(List<RuleProvider> ruleProviders) throws URISyntaxException {
         for (RuleProvider ruleProvider : ruleProviders) {
             getFileFromUri(ruleProvider);
         }
     }
 
-    public static void updateMmdb(List<MmdbProvider> mmdbProviders) throws URISyntaxException {
+    public void updateMmdb(List<MmdbProvider> mmdbProviders) throws URISyntaxException {
         for (MmdbProvider mmdbProvider : mmdbProviders) {
             getFileFromUri(mmdbProvider);
         }
     }
 
-    private static void getFileFromUri(Provider provider) throws URISyntaxException {
+    private void getFileFromUri(Provider provider) throws URISyntaxException {
         String uri = provider.getUrl();
         String fileName = provider.getPath();
         String curDir = System.getProperty("user.dir");

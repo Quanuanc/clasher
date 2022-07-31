@@ -19,17 +19,20 @@ public class FileUpdateTask {
     private static final Logger log = LoggerFactory.getLogger(FileUpdateTask.class);
     private final Upstream upstream;
 
-    public FileUpdateTask(Upstream upstream) {
+    private final HttpUtil httpUtil;
+
+    public FileUpdateTask(Upstream upstream, HttpUtil httpUtil) {
         this.upstream = upstream;
+        this.httpUtil = httpUtil;
     }
 
     @Scheduled(fixedRateString = "${clasher.update-interval}", timeUnit = TimeUnit.MINUTES, initialDelay = 1)
     public void updateFile() throws URISyntaxException {
         log.info("----- update task start ----");
         List<RuleProvider> ruleProviders = upstream.getRuleProviders();
-        HttpUtil.updateRules(ruleProviders);
+        httpUtil.updateRules(ruleProviders);
         List<MmdbProvider> mmdbProviders = upstream.getMmdbProviders();
-        HttpUtil.updateMmdb(mmdbProviders);
+        httpUtil.updateMmdb(mmdbProviders);
         log.info("---- update task finish ----");
     }
 }

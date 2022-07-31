@@ -2,28 +2,9 @@ package org.example.clasher.conf;
 
 import java.util.Date;
 
-public class ProxyProvider {
+public abstract class Provider {
     private String url;
     private String path;
-    private Date updateTime;
-
-    public ProxyProvider() {
-    }
-
-    public ProxyProvider(String url, String path, Date updateTime) {
-        this.url = url;
-        this.path = path;
-        this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        return "ProxyProvider{" +
-                "url='" + url + '\'' +
-                ", path='" + path + '\'' +
-                ", updateTime=" + updateTime +
-                '}';
-    }
 
     public String getUrl() {
         return url;
@@ -48,4 +29,6 @@ public class ProxyProvider {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+    private Date updateTime;
 }

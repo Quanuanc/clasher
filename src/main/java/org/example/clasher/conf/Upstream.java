@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@ConfigurationProperties(prefix = "upstream")
 @Component
+@ConfigurationProperties(prefix = "upstream")
 public class Upstream {
     private List<ProxyProvider> proxyProviders;
     private List<RuleProvider> ruleProviders;

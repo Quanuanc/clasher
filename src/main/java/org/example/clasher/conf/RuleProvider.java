@@ -1,20 +1,29 @@
 package org.example.clasher.conf;
 
-public class RuleProvider {
+import java.util.Date;
 
+public class RuleProvider extends Provider {
     private String url;
     private String path;
-    private int interval;
+    private Date updateTime;
 
     public RuleProvider() {
     }
 
-    public RuleProvider(String url, String path, int interval) {
+    public RuleProvider(String url, String path, Date updateTime) {
         this.url = url;
         this.path = path;
-        this.interval = interval;
+        this.updateTime = updateTime;
     }
 
+    @Override
+    public String toString() {
+        return "RuleProvider{" +
+                "url='" + url + '\'' +
+                ", path='" + path + '\'' +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 
     public String getUrl() {
         return url;
@@ -32,20 +41,11 @@ public class RuleProvider {
         this.path = path;
     }
 
-    public int getInterval() {
-        return interval;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setInterval(int interval) {
-        this.interval = interval;
-    }
-
-    @Override
-    public String toString() {
-        return "RuleProvider{" +
-                "url='" + url + '\'' +
-                ", path='" + path + '\'' +
-                ", interval=" + interval +
-                '}';
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

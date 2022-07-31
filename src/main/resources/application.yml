@@ -1,76 +1,78 @@
+clasher:
+  update-interval: 60 # 分钟
+
 upstream:
   proxy-providers:
     - url: "https://static.0x8.site/proxy-config/proxy/auto.yaml"
-      interval: 3600
-      path: ./proxy/provider-audo.yaml
+      update_time: 2022/01/01 00:00:00
+      path: /proxy/provider-audo.yaml
 
     - url: "https://static.0x8.site/proxy-config/proxy/premium.yaml"
-      interval: 3600
-      path: ./proxy/provider-premium.yaml
+      update_time: 2022/01/01 00:00:00
+      path: /proxy/provider-premium.yaml
 
     - url: "https://static.0x8.site/proxy-config/proxy/cloud.yaml"
-      interval: 3600
-      path: ./proxy/provider-cloud.yaml
-
+      update_time: 2022/01/01 00:00:00
+      path: /proxy/provider-cloud.yaml
 
   rule-providers:
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
-      path: ./ruleset/reject.yaml
-      interval: 86400
+      path: /ruleset/reject.yaml
+      update_time: 2022/01/01 00:00:00
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/icloud.txt"
-      path: ./ruleset/icloud.yaml
-      interval: 86400
+      path: /ruleset/icloud.yaml
+      update_time: 2022/01/01 00:00:00
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt"
-      path: ./ruleset/apple.yaml
-      interval: 86400
+      path: /ruleset/apple.yaml
+      update_time: 2022/01/01 00:00:00
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/google.txt"
-      path: ./ruleset/google.yaml
-      interval: 86400
+      path: /ruleset/google.yaml
+      update_time: 2022/01/01 00:00:00
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
-      path: ./ruleset/proxy.yaml
-      interval: 86400
+      path: /ruleset/proxy.yaml
+      update_time: 2022/01/01 00:00:00
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
-      path: ./ruleset/direct.yaml
-      interval: 86400
+      path: /ruleset/direct.yaml
+      update_time: 2022/01/01 00:00:00
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt"
-      path: ./ruleset/private.yaml
-      interval: 86400
+      path: /ruleset/private.yaml
+      update_time: 2022/01/01 00:00:00
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt"
-      path: ./ruleset/gfw.yaml
-      interval: 86400
+      path: /ruleset/gfw.yaml
+      update_time: 2022/01/01 00:00:00
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/greatfire.txt"
-      path: ./ruleset/greatfire.yaml
-      interval: 86400
+      path: /ruleset/greatfire.yaml
+      update_time: 2022/01/01 00:00:00
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt"
-      path: ./ruleset/tld-not-cn.yaml
-      interval: 86400
+      path: /ruleset/tld-not-cn.yaml
+      update_time: 2022/01/01 00:00:00
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt"
-      path: ./ruleset/telegramcidr.yaml
-      interval: 86400
+      path: /ruleset/telegramcidr.yaml
+      update_time: 2022/01/01 00:00:00
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
-      path: ./ruleset/cncidr.yaml
-      interval: 86400
+      path: /ruleset/cncidr.yaml
+      update_time: 2022/01/01 00:00:00
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
-      path: ./ruleset/lancidr.yaml
-      interval: 86400
+      path: /ruleset/lancidr.yaml
+      update_time: 2022/01/01 00:00:00
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt"
-      path: ./ruleset/applications.yaml
-      interval: 86400
+      path: /ruleset/applications.yaml
+      update_time: 2022/01/01 00:00:00
 
   mmdb-providers:
-    - url: https://github.com/alecthw/mmdb_china_ip_list/releases/latest/download/Country.mmdb
-      path: ./Country.mmdb
-      interval: 86400
+    - url: "https://github.com/alecthw/mmdb_china_ip_list/releases/latest/download/Country.mmdb"
+      path: /Country.mmdb
+      update_time: 2022/01/01 00:00:00

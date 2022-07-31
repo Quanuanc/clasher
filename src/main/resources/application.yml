@@ -1,19 +1,16 @@
+server:
+  port: 8085
+
 clasher:
   update-interval: 60 # 分钟
+  socks-address: "localhost"
+  socks-port: 7890
 
 upstream:
   proxy-providers:
-    - url: "https://static.0x8.site/proxy-config/proxy/auto.yaml"
+    - url: "https://52laoba.xyz/api/v1/client/subscribe?token=87954741d80ef56d2d27e47624eaa3cc&flag=clash"
       update_time: 2022/01/01 00:00:00
-      path: /proxy/provider-audo.yaml
-
-    - url: "https://static.0x8.site/proxy-config/proxy/premium.yaml"
-      update_time: 2022/01/01 00:00:00
-      path: /proxy/provider-premium.yaml
-
-    - url: "https://static.0x8.site/proxy-config/proxy/cloud.yaml"
-      update_time: 2022/01/01 00:00:00
-      path: /proxy/provider-cloud.yaml
+      path: /proxy/老八机场.yaml
 
   rule-providers:
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
@@ -73,6 +70,6 @@ upstream:
       update_time: 2022/01/01 00:00:00
 
   mmdb-providers:
-    - url: "https://github.com/alecthw/mmdb_china_ip_list/releases/latest/download/Country.mmdb"
-      path: /Country.mmdb
-      update_time: 2022/01/01 00:00:00
+#    - url: "https://github.com/alecthw/mmdb_china_ip_list/releases/latest/download/Country.mmdb"
+#      path: /Country.mmdb
+#      update_time: 2022/01/01 00:00:00

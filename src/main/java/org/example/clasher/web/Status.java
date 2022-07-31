@@ -6,10 +6,12 @@ import org.example.clasher.task.FileUpdateTask;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 public class Status {
@@ -32,7 +34,7 @@ public class Status {
     }
 
     @GetMapping("/update")
-    public String update() {
+    public String update() throws IOException, ExecutionException, InterruptedException {
         try {
             fileUpdateTask.updateFile();
         } catch (URISyntaxException e) {

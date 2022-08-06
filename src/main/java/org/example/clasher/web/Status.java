@@ -1,5 +1,7 @@
 package org.example.clasher.web;
 
+import org.example.clasher.conf.MmdbProvider;
+import org.example.clasher.conf.ProxyProvider;
 import org.example.clasher.conf.RuleProvider;
 import org.example.clasher.conf.Upstream;
 import org.example.clasher.task.FileUpdateTask;
@@ -29,6 +31,12 @@ public class Status {
         Map<String, Date> result = new HashMap<>();
         for (RuleProvider ruleProvider : upstream.getRuleProviders()) {
             result.put(ruleProvider.getPath(), ruleProvider.getUpdateTime());
+        }
+        for (ProxyProvider proxyProvider : upstream.getProxyProviders()) {
+            result.put(proxyProvider.getPath(), proxyProvider.getUpdateTime());
+        }
+        for (MmdbProvider mmdbProvider : upstream.getMmdbProviders()) {
+            result.put(mmdbProvider.getPath(), mmdbProvider.getUpdateTime());
         }
         return result;
     }

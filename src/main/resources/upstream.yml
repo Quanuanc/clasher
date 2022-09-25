@@ -1,75 +1,55 @@
-server:
-  port: 8085
-
 clasher:
-  update-interval: 60 # 分钟
   socks-address: "localhost"
   socks-port: 7890
 
 upstream:
   proxy-providers:
     - url: "https://52laoba.xyz/api/v1/client/subscribe?token=87954741d80ef56d2d27e47624eaa3cc&flag=clash"
-      update_time: 2022/01/01 00:00:00
-      path: /proxy/老八机场.yaml
+      path: proxy/老八机场.yaml
 
   rule-providers:
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
-      path: /ruleset/reject.yaml
-      update_time: 2022/01/01 00:00:00
+      path: ruleset/reject.yaml
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/icloud.txt"
-      path: /ruleset/icloud.yaml
-      update_time: 2022/01/01 00:00:00
+      path: ruleset/icloud.yaml
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt"
-      path: /ruleset/apple.yaml
-      update_time: 2022/01/01 00:00:00
+      path: ruleset/apple.yaml
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/google.txt"
-      path: /ruleset/google.yaml
-      update_time: 2022/01/01 00:00:00
+      path: ruleset/google.yaml
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
-      path: /ruleset/proxy.yaml
-      update_time: 2022/01/01 00:00:00
+      path: ruleset/proxy.yaml
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
-      path: /ruleset/direct.yaml
-      update_time: 2022/01/01 00:00:00
+      path: ruleset/direct.yaml
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt"
-      path: /ruleset/private.yaml
-      update_time: 2022/01/01 00:00:00
+      path: ruleset/private.yaml
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt"
-      path: /ruleset/gfw.yaml
-      update_time: 2022/01/01 00:00:00
+      path: ruleset/gfw.yaml
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/greatfire.txt"
-      path: /ruleset/greatfire.yaml
-      update_time: 2022/01/01 00:00:00
+      path: ruleset/greatfire.yaml
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt"
-      path: /ruleset/tld-not-cn.yaml
-      update_time: 2022/01/01 00:00:00
+      path: ruleset/tld-not-cn.yaml
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt"
-      path: /ruleset/telegramcidr.yaml
-      update_time: 2022/01/01 00:00:00
+      path: ruleset/telegramcidr.yaml
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
-      path: /ruleset/cncidr.yaml
-      update_time: 2022/01/01 00:00:00
+      path: ruleset/cncidr.yaml
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
-      path: /ruleset/lancidr.yaml
-      update_time: 2022/01/01 00:00:00
+      path: ruleset/lancidr.yaml
 
     - url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt"
-      path: /ruleset/applications.yaml
-      update_time: 2022/01/01 00:00:00
-
+      path: ruleset/applications.yaml
+  
   mmdb-providers:
-#    - url: "https://github.com/alecthw/mmdb_china_ip_list/releases/latest/download/Country.mmdb"
-#      path: /Country.mmdb
-#      update_time: 2022/01/01 00:00:00
+    - url: "https://github.com/alecthw/mmdb_china_ip_list/releases/latest/download/Country.mmdb"
+      path: Country.mmdb

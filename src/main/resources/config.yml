@@ -1,4 +1,4 @@
-socksAddress: "localhost"
+socksAddress: "192.168.2.11"
 socksPort: 7890
 upstream:
   proxyProviders:

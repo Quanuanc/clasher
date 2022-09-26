@@ -1,15 +1,28 @@
 package org.example.clasher.cmd;
 
+import okhttp3.OkHttpClient;
 import org.apache.commons.cli.*;
 import org.example.clasher.conf.Config;
+import org.example.clasher.conf.Upstream;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 
 public class Core {
+    private static OkHttpClient httpClient;
+
+    public static void initHttpClient(String socksAddress, int socksPort) {
+        InetSocketAddress proxyAddr = new InetSocketAddress(socksAddress, socksPort);
+        Proxy proxy = new Proxy(Proxy.Type.SOCKS, proxyAddr);
+        httpClient = new OkHttpClient.Builder().proxy(proxy).build();
+    }
+
+
     public static CommandLine buildCmd(Options options, String[] args) {
         Option version = new Option("v", false, "print version");
         options.addOption(version);
@@ -29,13 +42,16 @@ public class Core {
     }
 
     public static Config readConfig(String configFile) {
-        Config result;
         try (InputStream is = new FileInputStream(configFile)) {
             Yaml yaml = new Yaml(new Constructor(Config.class));
-            result = yaml.load(is);
+            return yaml.load(is);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return result;
+    }
+
+    public static void download(Upstream upstream) {
+        RuleDownloader ruleDownloader = new RuleDownloader(upstream.getRuleProviders(), httpClient);
+        ruleDownloader.download();
     }
 }

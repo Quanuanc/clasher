@@ -1,6 +1,5 @@
 package org.example.clasher.cmd;
 
-import okhttp3.OkHttpClient;
 import org.apache.commons.cli.*;
 import org.example.clasher.conf.Config;
 import org.example.clasher.conf.Upstream;
@@ -13,16 +12,20 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
-import java.net.Proxy;
+import java.net.ProxySelector;
+import java.net.http.HttpClient;
 
 public class Core {
     private static final Logger log = LoggerFactory.getLogger(Core.class);
-    private static OkHttpClient httpClient;
+    private static HttpClient httpClient;
 
     public static void initHttpClient(String socksAddress, int socksPort) {
         InetSocketAddress proxyAddr = new InetSocketAddress(socksAddress, socksPort);
-        Proxy proxy = new Proxy(Proxy.Type.SOCKS, proxyAddr);
-        httpClient = new OkHttpClient.Builder().proxy(proxy).build();
+        ProxySelector ps = ProxySelector.of(proxyAddr);
+        httpClient = HttpClient.newBuilder()
+                .version(HttpClient.Version.HTTP_2)
+                .proxy(ps)
+                .build();
     }
 
 

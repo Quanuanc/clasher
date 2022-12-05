@@ -29,8 +29,9 @@ public class RuleDownloader {
     public boolean[] download() {
         boolean[] result = new boolean[ruleProviders.size()];
         int i = 0;
+        HttpRequest.Builder builder = HttpRequest.newBuilder();
         for (Provider provider : ruleProviders) {
-            HttpRequest request = HttpRequest.newBuilder()
+            HttpRequest request = builder
                     .GET()
                     .uri(URI.create(provider.getUrl()))
                     .build();

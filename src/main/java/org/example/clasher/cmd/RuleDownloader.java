@@ -5,6 +5,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.example.clasher.conf.Provider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class RuleDownloader {
+    private static final Logger log = LoggerFactory.getLogger(RuleDownloader.class);
     private final List<Provider> ruleProviders;
     private final OkHttpClient httpClient;
 
@@ -35,8 +38,12 @@ public class RuleDownloader {
                     throw new IOException("Failed to download file: " + response);
                 String path = curDir + provider.getPath();
                 File file = new File(path);
-                if (!file.getParentFile().exists())
-                    file.getParentFile().mkdirs();
+                if (!file.getParentFile().exists()) {
+                    boolean mkResult = file.getParentFile().mkdirs();
+                    if (!mkResult) {
+                        log.info("Create dir failed, dir: {}", file.getParentFile().toString());
+                    }
+                }
                 ResponseBody responseBody = response.body();
                 FileOutputStream fos = new FileOutputStream(path);
                 fos.write(responseBody.bytes());

@@ -4,6 +4,8 @@ import okhttp3.OkHttpClient;
 import org.apache.commons.cli.*;
 import org.example.clasher.conf.Config;
 import org.example.clasher.conf.Upstream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -14,6 +16,7 @@ import java.net.InetSocketAddress;
 import java.net.Proxy;
 
 public class Core {
+    private static final Logger log = LoggerFactory.getLogger(Core.class);
     private static OkHttpClient httpClient;
 
     public static void initHttpClient(String socksAddress, int socksPort) {
@@ -51,7 +54,12 @@ public class Core {
     }
 
     public static void download(Upstream upstream) {
+        log.info("Download start");
+        long start = System.currentTimeMillis();
         RuleDownloader ruleDownloader = new RuleDownloader(upstream.getRuleProviders(), httpClient);
         ruleDownloader.download();
+        long stop = System.currentTimeMillis();
+        log.info("Download stop");
+        log.info("Download spend time: {} ms", stop - start);
     }
 }

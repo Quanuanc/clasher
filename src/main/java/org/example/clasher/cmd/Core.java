@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.net.ProxySelector;
 import java.net.http.HttpClient;
+import java.time.Duration;
 
 public class Core {
     private static final Logger log = LoggerFactory.getLogger(Core.class);
@@ -24,6 +25,7 @@ public class Core {
         ProxySelector ps = ProxySelector.of(proxyAddr);
         httpClient = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_2)
+                .connectTimeout(Duration.ofSeconds(10))
                 .proxy(ps)
                 .build();
     }

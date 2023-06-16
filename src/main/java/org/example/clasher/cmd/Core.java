@@ -6,7 +6,6 @@ import org.example.clasher.conf.Upstream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -51,8 +50,8 @@ public class Core {
 
     public static Config readConfig(String configFile) {
         try (InputStream is = new FileInputStream(configFile)) {
-            Yaml yaml = new Yaml(new Constructor(Config.class));
-            return yaml.load(is);
+            Yaml yaml = new Yaml();
+            return yaml.loadAs(is, Config.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

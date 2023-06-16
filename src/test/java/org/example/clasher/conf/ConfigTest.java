@@ -2,7 +2,6 @@ package org.example.clasher.conf;
 
 
 import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,9 +15,8 @@ class ConfigTest {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        Yaml yaml = new Yaml(new Constructor(Upstream.class));
-
-        Upstream load = yaml.load(is);
+        Yaml yaml = new Yaml();
+        Upstream load = yaml.loadAs(is, Upstream.class);
         System.out.println(load);
     }
 }
